@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.CarSales.repository.CarMybatisRepo">
+    <select id ="findAll" resultType="Car">
+        select
+        c.id,
+        c.carModel,
+        c.carCountry,
+        c.carColour,
+        c.carYear,
+        c.price
+        from car_sales.cars c;
+    </select>
+
+    <select id="findById" resultType="Car">
+        select <include refid="carBaseColumns"></include>
+        from car_sales.cars c
+        <where>
+            c.id=#{id};
+        </where>
+    </select>
+    <insert id="insert">
+        insert into Cars(
+        carModel,
+        carCountry,
+        carColour,
+        carYear,
+        price)
+        values(
+        #{carModel},
+        #{carCountry},
+        #{carColour},
+        #{carYear},
+        #{price});
+    </insert>
+    <update id="updateCar">
+        update car_sales.cars c
+        set c.carModel=#{carModel,jdbcType=NVARCHAR},
+        c.carCountry=#{carCountry,jdbcType=NVARCHAR},
+        c.carColour=#{carColour,jdbcType=NVARCHAR},
+        c.carYear=#{carYear},
+        c.price=#{price}
+        where c.id =#{id};
+    </update>
+    <delete id="deleteCar">
+        delete from car_sales.cars c
+        <where>
+                c.id = #{id}
+            </where>
+        </delete>
+<sql id="carBaseColumns">
+    c.id,
+    c.carModel,
+    c.carCountry,
+    c.carColour,
+    c.carYear,
+    c.price
+</sql>
+</mapper>
