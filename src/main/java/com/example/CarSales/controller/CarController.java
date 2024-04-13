@@ -14,12 +14,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CarController {
     private final CarService carServise;
-@GetMapping
+@GetMapping("/no-auth")
     public ResponseEntity<List<CarResponce>> getAllCars(){
     List<CarResponce>cars= carServise.getAllCars();
     return ResponseEntity.ok(cars);
 }
-    @GetMapping("id/{id}")
+    @GetMapping("/no-auth/id/{id}")
     public ResponseEntity <CarResponce> getAllCarsById(@PathVariable("id")Long id){
         CarResponce car= carServise.getByCarId(id);
         return ResponseEntity.ok(car);
@@ -35,7 +35,7 @@ public class CarController {
         carServise.updateCar(id,carRequest);
         return ResponseEntity.ok().build();
     }
-    @DeleteMapping("id/{id}")
+    @DeleteMapping("/admin/id/{id}")
     public ResponseEntity <Void> deleteCarById(@PathVariable("id")Long id){
         carServise.deleteCar(id);
         return ResponseEntity.ok().build();

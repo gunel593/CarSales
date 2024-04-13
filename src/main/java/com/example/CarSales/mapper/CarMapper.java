@@ -14,5 +14,5 @@ public interface CarMapper {
     List<CarResponce>toCarResponceList(List<Car> carList);
     CarResponce toCarResponce(Car car);
     Car toCar(CarRequest carRequest);
-    Car toCarById(Long id,CarRequest carRequest);
+    Car toCarById(Long id,CarRequest carRequest );
 }
