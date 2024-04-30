@@ -1,7 +1,7 @@
 package com.example.CarSales.mapper;
 
-import com.example.CarSales.model.dto.CarRequest;
-import com.example.CarSales.model.dto.CarResponce;
+import com.example.CarSales.model.dto.Request.CarRequest;
+import com.example.CarSales.model.dto.Responce.CarResponce;
 import com.example.CarSales.model.entity.Car;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

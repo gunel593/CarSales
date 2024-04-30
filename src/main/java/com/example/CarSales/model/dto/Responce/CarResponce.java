@@ -1,16 +1,15 @@
-package com.example.CarSales.model.dto;
+package com.example.CarSales.model.dto.Responce;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class CarRequest {
+@NoArgsConstructor
+public class CarResponce {
     private Long id;
     private String carModel;
     private String carCountry;

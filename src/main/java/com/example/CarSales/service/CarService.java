@@ -1,7 +1,7 @@
 package com.example.CarSales.service;
 
-import com.example.CarSales.model.dto.CarRequest;
-import com.example.CarSales.model.dto.CarResponce;
+import com.example.CarSales.model.dto.Request.CarRequest;
+import com.example.CarSales.model.dto.Responce.CarResponce;
 
 import java.util.List;
 

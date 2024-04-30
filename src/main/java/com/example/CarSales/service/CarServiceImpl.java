@@ -1,16 +1,17 @@
-package com.example.CarSales.service;
+ package com.example.CarSales.service;
 
 import com.example.CarSales.mapper.CarMapper;
-import com.example.CarSales.model.dto.CarRequest;
-import com.example.CarSales.model.dto.CarResponce;
+import com.example.CarSales.model.dto.Request.CarRequest;
+import com.example.CarSales.model.dto.Responce.CarResponce;
 import com.example.CarSales.model.entity.Car;
 import com.example.CarSales.repository.CarMybatisRepo;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CarServiceImpl implements CarService {
@@ -35,8 +36,13 @@ private final CarMapper carMapper;
 
     @Override
     public void insert(CarRequest carRequest) {
+        log.info("Insert received.CarRequest:{}",carRequest);
         Car cars = carMapper.toCar(carRequest);
+        log.info("carMapper mapped to to Car.Car:{}",cars);
         carMybatisRepo.insert(cars);
+        log.info("Add process was succesfull.");
+        log.warn("Just warning{}",carRequest);
+        log.error("Just error.{}",carRequest);
     }
 
     @Override

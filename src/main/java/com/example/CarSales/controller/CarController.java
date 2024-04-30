@@ -1,7 +1,7 @@
 package com.example.CarSales.controller;
 
-import com.example.CarSales.model.dto.CarRequest;
-import com.example.CarSales.model.dto.CarResponce;
+import com.example.CarSales.model.dto.Request.CarRequest;
+import com.example.CarSales.model.dto.Responce.CarResponce;
 import com.example.CarSales.service.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,31 +13,31 @@ import java.util.List;
 @RequestMapping("/car-sales")
 @RequiredArgsConstructor
 public class CarController {
-    private final CarService carServise;
+    private final CarService carService;
 @GetMapping("/no-auth")
     public ResponseEntity<List<CarResponce>> getAllCars(){
-    List<CarResponce>cars= carServise.getAllCars();
+    List<CarResponce>cars= carService.getAllCars();
     return ResponseEntity.ok(cars);
 }
     @GetMapping("/no-auth/id/{id}")
     public ResponseEntity <CarResponce> getAllCarsById(@PathVariable("id")Long id){
-        CarResponce car= carServise.getByCarId(id);
+        CarResponce car= carService.getByCarId(id);
         return ResponseEntity.ok(car);
     }
     @PostMapping
     public ResponseEntity <Void> addCars(@RequestBody CarRequest carRequest) {
-        carServise.insert(carRequest);
+        carService.insert(carRequest);
         return ResponseEntity.ok().build();
     }
     @PutMapping("id/{id}")
     public ResponseEntity <Void> updateCarById(@PathVariable("id")Long id,
                                                @RequestBody CarRequest carRequest){
-        carServise.updateCar(id,carRequest);
+        carService.updateCar(id,carRequest);
         return ResponseEntity.ok().build();
     }
     @DeleteMapping("/admin/id/{id}")
     public ResponseEntity <Void> deleteCarById(@PathVariable("id")Long id){
-        carServise.deleteCar(id);
+        carService.deleteCar(id);
         return ResponseEntity.ok().build();
     }
 }
