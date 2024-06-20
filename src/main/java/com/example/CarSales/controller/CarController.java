@@ -3,7 +3,9 @@ package com.example.CarSales.controller;
 import com.example.CarSales.model.dto.Request.CarRequest;
 import com.example.CarSales.model.dto.Responce.CarResponce;
 import com.example.CarSales.service.CarService;
+import com.example.CarSales.service.CarServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,10 +13,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/car-sales")
-@RequiredArgsConstructor
 public class CarController {
     private final CarService carService;
-@GetMapping("/no-auth")
+
+    public CarController(@Qualifier("carJpaServiceImpl") CarService carService) {
+        this.carService = carService;
+    }
+
+    @GetMapping()
     public ResponseEntity<List<CarResponce>> getAllCars(){
     List<CarResponce>cars= carService.getAllCars();
     return ResponseEntity.ok(cars);
